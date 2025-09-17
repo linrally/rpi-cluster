@@ -1,0 +1,18 @@
+ssh_pwauth: false
+
+groups:
+  - ubuntu: [root, sys]
+
+users:
+  - default
+  - name: rpic
+    gecos: rpic
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: sudo
+    ssh_import_id: None
+    lock_passwd: true
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - <ssh-pub-key>
+
+hostname: rpic-<num>
