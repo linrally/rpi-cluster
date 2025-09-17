@@ -13,6 +13,6 @@ users:
     lock_passwd: true
     shell: /bin/bash
     ssh_authorized_keys:
-      - <ssh-pub-key>
+      - {{SSH_KEY}}
 
-hostname: rpic-<num>
+hostname: rpic-{{NODE_NUM}}

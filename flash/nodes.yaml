@@ -1,0 +1,8 @@
+defaults:
+  user: rpic
+  key: ~/.ssh/rpic
+
+nodes:
+  rpic-1: 10.42.42.100
+  rpic-2: 10.42.42.101
+  rpic-3: 10.42.42.102
