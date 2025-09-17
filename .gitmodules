@@ -1,0 +1,3 @@
+[submodule "flash/rpi-imager"]
+	path = flash/rpi-imager
+	url = https://github.com/raspberrypi/rpi-imager

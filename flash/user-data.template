@@ -15,4 +15,7 @@ users:
     ssh_authorized_keys:
       - {{SSH_KEY}}
 
+chpasswd:
+  expire: false
+
 hostname: rpic-{{NODE_NUM}}
