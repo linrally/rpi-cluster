@@ -1,0 +1,10 @@
+- hosts: server
+  become: true
+  tasks:
+    - name: Install K3s server
+      shell: curl -sfL https://get.k3s.io | sh -
+      args:
+        creates: /usr/local/bin/k3s
+
+# Copy /etc/rancher/k3s/k3s.yaml on this node to your laptop's ~/.kube/config
+# Remember to replace the IP

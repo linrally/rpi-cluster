@@ -1,0 +1,23 @@
+- hosts: all
+  become: true
+  tasks:
+    - name: Update apt
+      apt:
+        update_cache: yes
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Enable cgroup features
+      lineinfile:
+        path: /boot/firmware/cmdline.txt
+        backrefs: yes
+        regexp: '^(.*)$'
+        line: '\1 cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1 swapaccount=1'
+      notify: reboot
+
+  handlers:
+    - name: reboot
+      reboot:
