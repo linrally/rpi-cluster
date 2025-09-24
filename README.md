@@ -1,5 +1,6 @@
 # TODO
-- More with Ansible
+- Ansible cleanup
 - Helm 
-- Consolidate inventory and nodes.yaml
+- Consolidate inventory.ini and nodes.yaml
 - Better way to grab `/etc/rancher/k3s/k3s.yaml`?
+- Tailscale
