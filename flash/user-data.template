@@ -1,7 +1,5 @@
+#cloud-config
 ssh_pwauth: false
-
-groups:
-  - ubuntu: [root, sys]
 
 users:
   - default
