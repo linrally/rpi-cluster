@@ -1,0 +1,12 @@
+image:
+  repository: registry
+  tag: "2"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 5000
+
+persistence:
+  size: 2Gi
+  accessMode: ReadWriteOnce

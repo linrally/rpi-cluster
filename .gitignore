@@ -1,1 +1,4 @@
 .env
+
+helm/**/secrets/*
+helm/**/values.secrets.yaml

@@ -3,17 +3,13 @@ kind: CronJob
 metadata:
   name: {{ .Release.Name }}-cronjob
 spec:
-  schedule: "0 9 * * *"
+  schedule: {{ .Values.schedule | quote }}
   jobTemplate:
     spec:
       template:
         spec:
           containers:
           - name: hello
-            image: busybox:1.28
-            imagePullPolicy: IfNotPresent
-            command:
-            - /bin/sh
-            - -c
-            - date; echo Hello from the Kubernetes cluster
+            image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            imagePullPolicy: {{ .Values.image.pullPolicy }}
           restartPolicy: OnFailure
