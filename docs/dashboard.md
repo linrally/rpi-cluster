@@ -19,3 +19,5 @@ Service account is defined in `/kubernetes/dashboard-admin.yaml`.
 ```
 kubectl apply -f kubernetes/dashboard-admin.yaml
 ```
+
+TODO: add certificate so pods can pull from registry.
