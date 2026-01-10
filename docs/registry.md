@@ -4,14 +4,14 @@ NAME               TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)          AGE
 registry-service   NodePort   10.43.89.49   <none>        5000:31033/TCP   20m
 ```
 
-Pick any node in the cluster and find its Tailscale IP. 
+Pick any node in the cluster and find its Tailscale DNS name.
 
-To get a catalog of images in the registry, use `curl http://<tailscale-ip>:<port>/v2/_catalog`
+To get a catalog of images in the registry, use `curl rpic-1:<port>/v2/_catalog`
 
 If we want to push images using Docker, need to add a line in `Settings → Docker Engine`
 ```
 {
-  "insecure-registries": ["<tailscale-ip>:<port>"]
+  "insecure-registries": ["rpic-1:<port>"]
 }
 ```
 
