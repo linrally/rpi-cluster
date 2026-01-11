@@ -1,5 +1,7 @@
 schedule: "0 9 * * *"
 
+timeZone: America/New_York
+
 image:
   repository: rpic-1:31033/tw-mailer
   tag: d679ef67c5c8
