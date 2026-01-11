@@ -30,5 +30,5 @@
   handlers:
     - name: Restart k3s
       service:
-        name: "{{ 'k3s' if 'server' in group_names else 'k3s-agent' }}"
+        name: "{{ 'k3s' if 'server' in group_names else 'k3s-agent' }}" # may be a better way to do this
         state: restarted
