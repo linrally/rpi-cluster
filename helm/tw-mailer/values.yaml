@@ -1,6 +1,6 @@
 schedule: "0 9 * * *"
 
 image:
-  repository: ghcr.io/yourname/taskwarrior
-  tag: latest
+  repository: rpic-1:31033/tw-mailer
+  tag: d679ef67c5c8
   pullPolicy: IfNotPresent

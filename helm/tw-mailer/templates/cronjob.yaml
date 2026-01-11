@@ -9,7 +9,56 @@ spec:
       template:
         spec:
           containers:
-          - name: hello
+          - name: {{ .Release.Name }}
             image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
             imagePullPolicy: {{ .Values.image.pullPolicy }}
+            env:
+            - name: SMTP_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: smtp.host
+            - name: SMTP_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: smtp.port
+            - name: SMTP_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: smtp.user
+            - name: SMTP_FROM
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: smtp.from
+            - name: RECIPIENT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: recipient
+            - name: SMTP_APPKEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: smtp.appKey
+            - name: TASKD_SERVER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: taskd.server
+            - name: TASKD_CREDENTIALS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: taskd.credentials
+            volumeMounts:
+            - name: secrets
+              mountPath: /secrets
+              readOnly: true
           restartPolicy: OnFailure
+          volumes:
+          - name: secrets
+            secret:
+              secretName: {{ .Release.Name }}-secret

@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-task sync >/dev/null 2>&1
-
 TASKRC=/root/.taskrc
 
 echo "Creating .taskrc from secrets..."
@@ -9,12 +7,14 @@ echo "Creating .taskrc from secrets..."
 cat > "$TASKRC" <<EOF
 data.location=/root/.task
 
-taskd.server=$(cat /secrets/taskd.server)
-taskd.credentials=$(cat /secrets/taskd.credentials)
+taskd.server=${TASKD_SERVER}
+taskd.credentials=${TASKD_CREDENTIALS}
 taskd.key=/secrets/client.key.pem
 taskd.certificate=/secrets/client.cert.pem
 taskd.ca=/secrets/ca.cert.pem
 EOF
+
+task sync > /dev/null 2>&1
 
 DATE=$(date +"%A, %B %d")
 
@@ -32,7 +32,25 @@ SOON=$(task status:pending "(overdue or due.before:today+5d)" \
 	rc.report.soonmail.header=off \
   soonmail)
 
-cat <<EOF | msmtp rally.lin@duke.edu
+echo "Creating msmtp config"
+cat > /etc/msmtprc <<EOF
+defaults
+auth on
+tls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile /dev/stdout
+
+account mailer
+host ${SMTP_HOST}
+port ${SMTP_PORT}
+from ${SMTP_FROM}
+user ${SMTP_USER}
+password ${SMTP_APPKEY}
+EOF
+
+chmod 600 /etc/msmtprc
+
+cat <<EOF | msmtp -a mailer "${RECIPIENT}"
 Subject: TW Update ($DATE)
 MIME-Version: 1.0
 Content-Type: text/html; charset=UTF-8
