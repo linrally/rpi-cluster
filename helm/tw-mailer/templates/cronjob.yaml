@@ -13,6 +13,8 @@ spec:
             image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
             imagePullPolicy: {{ .Values.image.pullPolicy }}
             env:
+            - name: TZ # timezone for the cron job
+              value: America/New_York
             - name: SMTP_HOST
               valueFrom:
                 secretKeyRef:
