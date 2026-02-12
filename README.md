@@ -8,3 +8,4 @@
 - Fruitless exploration into zone forwarding (DukeBlue firewalls)
 - `requirements.yml` for Ansible
 - Clean up service account
+- Some kind of auto-wifi connection or ethernet backup
