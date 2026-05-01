@@ -18,8 +18,8 @@ fullnameOverride: ""
 ##
 resources:
   requests:
-    memory: 512Mi
-    cpu: 500m
+    memory: 4Gi
+    cpu: 2
 
 lifecycle:
   postStart: []
@@ -283,7 +283,7 @@ minecraftServer:
   # Require public key to be signed by Mojang to join
   enforceSecureProfile: default
   # If you adjust this, you may need to adjust resources.requests above to match.
-  memory: 1024M
+  memory: 4G
   # General JVM options to be passed to the Minecraft server invocation
   jvmOpts: ""
   # Options like -X that need to proceed general JVM options
@@ -291,9 +291,9 @@ minecraftServer:
   overrideServerProperties: default
   # DEPRECATED: use top-level rconServiceAnnotations instead
   serviceAnnotations: {}
-  serviceType: ClusterIP
+  serviceType: NodePort
   ## Set the port used if the serviceType is NodePort
-  nodePort:
+  nodePort: 30065
   # Set the external port of the service, usefull when using the LoadBalancer service type
   servicePort: 25565
   clusterIP:
