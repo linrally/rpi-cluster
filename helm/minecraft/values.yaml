@@ -266,7 +266,7 @@ minecraftServer:
   # force re-download of server file
   forceReDownload: false
   # If set, the modpack at this URL will be downloaded at startup
-  downloadModpackUrl: "https://mediafilez.forgecdn.net/files/7454/494/serverpack9314.zip"
+  downloadModpackUrl: 
   # If true, old versions of downloaded mods will be replaced with new ones from downloadModpackUrl
   removeOldMods: false
   # A list of VanillaTweaks Share Codes to download. (https://vanillatweaks.net/share#wUq1iz => "wUq1iz")
