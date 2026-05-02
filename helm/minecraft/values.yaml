@@ -1,7 +1,7 @@
 # ref: https://hub.docker.com/r/itzg/minecraft-server/
 image:
   repository: itzg/minecraft-server
-  tag: latest
+  tag: java8
   pullPolicy: Always
   pullSecret: ""
 
@@ -18,7 +18,7 @@ fullnameOverride: ""
 ##
 resources:
   requests:
-    memory: 4Gi
+    memory: 6Gi
     cpu: 2
 
 lifecycle:
@@ -175,14 +175,14 @@ minecraftServer:
   # This must be overridden, since we can't accept this for the user.
   eula: "FALSE"
   # One of: LATEST, SNAPSHOT, or a specific version (ie: "1.7.9").
-  version: "LATEST"
+  version: "1.16.5"
   ## The type of Minecraft server to run, check for related settings below
   ## Common types: "VANILLA", "FABRIC", "FORGE", "SPIGOT", "BUKKIT", "PAPER",
   ## "FTBA", "SPONGEVANILLA", "AUTO_CURSEFORGE"
   ## ref: https://docker-minecraft-server.readthedocs.io/en/latest/types-and-platforms
-  type: "VANILLA"
+  type: "FORGE"
   # If type is set to FORGE, this sets the version; this is ignored if forgeInstallerUrl is set
-  forgeVersion:
+  forgeVersion: "36.2.35"
   # If type is set to FORGE, this sets the URL to download the Forge installer
   forgeInstallerUrl:
   # If type is set to SPONGEVANILLA, this sets the version
@@ -266,7 +266,7 @@ minecraftServer:
   # force re-download of server file
   forceReDownload: false
   # If set, the modpack at this URL will be downloaded at startup
-  downloadModpackUrl:
+  downloadModpackUrl: "https://mediafilez.forgecdn.net/files/7454/494/serverpack9314.zip"
   # If true, old versions of downloaded mods will be replaced with new ones from downloadModpackUrl
   removeOldMods: false
   # A list of VanillaTweaks Share Codes to download. (https://vanillatweaks.net/share#wUq1iz => "wUq1iz")
@@ -283,7 +283,7 @@ minecraftServer:
   # Require public key to be signed by Mojang to join
   enforceSecureProfile: default
   # If you adjust this, you may need to adjust resources.requests above to match.
-  memory: 4G
+  memory: 6G
   # General JVM options to be passed to the Minecraft server invocation
   jvmOpts: ""
   # Options like -X that need to proceed general JVM options
@@ -453,8 +453,8 @@ persistence:
   # storageClass: "-"
   dataDir:
     # Set this to false if you don't care to persist state between restarts.
-    enabled: false
-    Size: 1Gi
+    enabled: true
+    Size: 10Gi
     accessModes:
       - ReadWriteOnce
     # existingClaim: nil
